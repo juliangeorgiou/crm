@@ -1,0 +1,5 @@
+/node_modules
+/DB backup
+/.vscode
+/.idea
+/dist

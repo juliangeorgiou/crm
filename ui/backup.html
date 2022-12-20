@@ -1,0 +1,157 @@
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+            <!-- Tabs -->
+            <!-- the element below, has two classes: nav and navbar-nav and one id nav-links (elements can only have one id and it's unique on the whole html page)-->
+            <ul class="nav navbar-nav" id="nav-links">
+                <li class="active" data-nav-link="sign_in">Sign in</li>
+                <li data-nav-link="clients" id="clients-button">Clients</li>
+                <li data-nav-link="orders">Orders</li>
+                <li data-nav-link="products">Products</li>
+                <li data-nav-link="reports">Reports</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Tab panes -->
+<!-- Tab pane sign in -->
+<div class="tab-pane sign_in" data-nav-pane="sign_in">
+    <h1>Sign in</h1>
+    <p>--</p>
+    <hr>
+    <form>
+        <label><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" id="login-email-input" required>
+
+        <label><b>Password</b></label>
+        <input type="text" placeholder="Password" name="name" id="password-input" required>
+
+        <button type="button" class="sign-in-btn">Sign in</button>
+    </form>
+</div>
+
+<!-- Tab pane clients -->
+<div class="table-responsive tab-pane" data-nav-pane="clients" style="display:none">
+    <h2>Clients</h2>
+    <a data-nav-link="reg-client" id="reg-tab" href="#create-new">Create new client</a>
+    <a id="export-btn">Export client list</a>
+    <input type="file" id="import-btn">Select database to import</input>
+    <p>List of clients</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                User ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Last contact
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Notes
+            </th>
+        </tr>
+        </thead>
+        <tbody id="clients-table"></tbody>
+    </table>
+</div>
+<!-- Tab pane create new client -->
+<div class="reg-pane" data-nav-pane="reg-client" style="display:none">
+    <h2>Create new client</h2>
+    <a data-nav-link="clients" id="client-tab-btn" href="#client-list">Back to list of clients</a>
+    <hr>
+    <form>
+        <label><b>Name</b></label>
+        <input type="text" placeholder="Adamos Adamou" name="name" id="reg-name-input" required>
+
+        <label><b>Email</b></label>
+        <input type="text" placeholder="email@domain.com" name="email" id="reg-email-input">
+
+        <label><b>Phone number</b></label>
+        <input type="text" placeholder="99123456" name="phone-nr" id="reg-phone-input">
+
+        <label><b>Notes</b></label>
+        <input type="text" placeholder="Next renewal conversation on..." name="name" id="reg-notes-input">
+
+        <label id="user-created-prompt" style="display:none; color:green"><b>Client saved!</b></label>
+        <hr>
+
+        <button type="button" class="registerbtn" id="registerbtn">Register client</button>
+    </form>
+</div>
+<!-- Tab pane edit client -->
+<div class="edit-pane" data-nav-pane="edit-client" style="display:none">
+    <h2>Edit client</h2>
+    <a data-nav-link="clients" id="client-tab-btn2" href="#client-list">Back to list of clients</a>
+    <hr>
+    <form>
+        <label><b>Name</b></label>
+        <input type="text" name="name" id="edit-name-input" required>
+
+        <label><b>Email</b></label>
+        <input type="text" name="email" id="edit-email-input">
+
+        <label><b>Phone number</b></label>
+        <input type="text" name="phone-nr" id="edit-phone-input">
+
+        <label><b>Notes</b></label>
+        <input type="text" name="name" id="edit-notes-input">
+
+        <label id="user-edited-prompt" style="display:none; color:green"><b>Changes saved!</b></label>
+        <hr>
+
+        <button type="button" id="save-client-changes">Save changes</button>
+    </form>
+</div>
+<!-- Tab pane orders -->
+<div class="tab-pane orders" data-nav-pane="orders" style="display:none">
+    <h4>Orders in progress</h4>
+    <p>tab pane 3</p>
+</div>
+<!-- Tab pane products -->
+<div class="tab-pane products" data-nav-pane="products" style="display:none">
+    <h4>Services & products</h4>
+    <p>tab pane 4</p>
+</div>
+<!-- Tab pane products -->
+<div class="tab-pane reports" data-nav-pane="reports" style="display:none">
+    <h4>Reports</h4>
+    <p>Released:
+        - refresh function for table
+        - export clients object in JSON
+        - "user created" prompt
+        - input fields on create client page, refresh
+    </p>
+    <p>Coming soon:
+        - edit client profile
+        - show UID from client object into client-table
+        - import JSON database
+        - create products/services from user
+        - assign products to orders
+        - assign orders to clients
+        - create client profile page
+    </p>
+    <p>Graphical improvements:
+        - navigation bar
+        - tab-panes
+        - design (purple coloured theme?)
+    </p>
+</div>
+</div>
+</div>
+<div class="container signin">
+
+</div>
+</form>
