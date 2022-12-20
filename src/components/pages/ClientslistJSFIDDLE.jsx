@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import {Table} from "react-bootstrap"
 import MultiRangeSlider from "multi-range-slider-react"
+import Select from 'react-select'
 
 export default function ClientslistJSFIDDLE() {
   const clients = [
@@ -33,8 +34,23 @@ export default function ClientslistJSFIDDLE() {
       clientName: "Pierre",
       orderValue: 4500,
       clientNationality: "French",
+    }, 
+    {
+      clientID: 5,
+      clientName: "Hans-Ueli",
+      orderValue: 9500,
+      clientNationality: "German"
     }
   ]
+
+  const nationalityOptions = clients
+    .map((client) => client.clientNationality)
+    .filter((element, index, array) => {
+      return array.indexOf(element) === index
+    })
+    .map((nationality) => {
+      return {value: nationality, label: nationality}
+  })
 
   const [columnSort, setColumnSort] = useState("clientName")
   const [isEditingTable, setIsEditingTable] = useState(false)
@@ -46,7 +62,6 @@ export default function ClientslistJSFIDDLE() {
     orderValue: false,
     clientNationality: true
   })
-  //TODO sort numerically not working
   //sort clients ascending or descending
   clients.sort((a, b) => {
     const valueA = a[columnSort]
@@ -129,6 +144,7 @@ export default function ClientslistJSFIDDLE() {
           borderRadius: "2px"
         }}>
           <MultiRangeSlider />
+          <Select options={nationalityOptions} />
         </div>
         : ""}
       </div>
