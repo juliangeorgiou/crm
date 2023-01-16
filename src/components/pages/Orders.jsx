@@ -15,6 +15,7 @@ export default function Orders() {
   useEffect(() => {
     refreshTable()
   }, [])
+  console.log("Orders are:", orders)
     
   //GIVES ERROR: MIME SNIFFING move the dummy data to the parent component (panes.jsx)
   //pass the dummy data to this component ()
