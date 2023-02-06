@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 //.. goes on level higher in the folder structure
 import { fetchData } from '../service/api';
 import CreateOrder from './CreateOrder.jsx';
+import {Table} from "react-bootstrap"
 
 export default function ClientOrders(props) {
   const client = useRouteLoaderData("clientProfile");
@@ -27,7 +28,7 @@ export default function ClientOrders(props) {
       <p>Orders list</p>
       {orders == undefined ?
       "Loading orders":
-      <table>
+      <Table>
         <thead>
         <tr>
           <th>Order number</th>
@@ -48,7 +49,7 @@ export default function ClientOrders(props) {
             );
           })
         }</tbody>
-      </table>
+      </Table>
       }
     </div>
   )

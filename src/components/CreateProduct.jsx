@@ -1,7 +1,11 @@
 import React, {useState} from "react";
 import { postData } from "../service/api";
 
-export default function CreateProduct({onCreate}){
+//the first param of CreateProduct is an object e.g: named "props"
+//below key-value pair is "onCreate"
+//using {onCreate} we extract the value of the key-value pair
+export default function CreateProduct(props){
+    const onCreate = props.onCreate
     const [productName, setProductName] = useState("")
     const [productPrice, setProductPrice] = useState("")
     const [productDescription, setProductDescription] = useState("")

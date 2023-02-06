@@ -19,10 +19,9 @@ import ClientProfile from './pages/ClientProfile.jsx'
 import Root from './Root.jsx';
 import {fetchData} from '../service/api.js'
 import ClientFeed from './ClientFeed.jsx'
-import ClientInvoices from './ClientInvoices.jsx'
+import Invoice from './Invoice.jsx'
 import ClientInfo from './ClientInfo.jsx'
 import ClientOrders from './ClientOrders.jsx'
-import ClientslistJSFIDDLE from './pages/ClientslistJSFIDDLE.jsx'
 
 
 /*THIS IS A NAV PANE EMPLOYING USESTATE FOR NAVIGATION
@@ -48,6 +47,12 @@ export default function Panes(){
       </div>
   )
 }*/
+
+async function invoiceLoader({params}){
+  const order = await fetchData("order/" + params.orderNumber)
+  const client = await fetchData("client/" + order.clientID)
+  return {order: order, client: client}
+}
 
 async function clientLoader({params}){
   const clientLoaded = await fetchData("client/" + params.clientID)
@@ -75,11 +80,7 @@ const router = createBrowserRouter([
           {
             path: "orders",
             element: <ClientOrders />,
-          },
-          {
-            path: "invoices",
-            element: <ClientInvoices />,
-          },
+          }
         ],
       },
       {
@@ -95,8 +96,10 @@ const router = createBrowserRouter([
         element: <Orders />,
       },
       {
-        path: "fiddle",
-        element: <ClientslistJSFIDDLE />
+        path: "invoices/:orderNumber",
+        element: <Invoice />,
+        loader: invoiceLoader,
+        id: "invoice",
       }
     ],
   },

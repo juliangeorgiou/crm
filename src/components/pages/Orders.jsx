@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 //.. goes on level higher in the folder structure
 import { fetchData } from '../../service/api';
 import CreateOrder from '../CreateOrder.jsx';
+import {Link} from 'react-router-dom'
+import {Table} from "react-bootstrap"
 
 export default function Orders() {
   const [orders, setOrders] = useState(undefined)
@@ -15,7 +17,6 @@ export default function Orders() {
   useEffect(() => {
     refreshTable()
   }, [])
-  console.log("Orders are:", orders)
     
   //GIVES ERROR: MIME SNIFFING move the dummy data to the parent component (panes.jsx)
   //pass the dummy data to this component ()
@@ -25,12 +26,14 @@ export default function Orders() {
       <p>Orders list</p>
       {orders == undefined ?
       "Loading orders":
-      <table>
+      <Table>
         <thead>
         <tr>
-          <th>User ID | </th>
-          <th> Order number | </th>
-          <th> Due date | </th>
+          <th>User ID</th>
+          <th> Order number</th>
+          <th> Product name</th>
+          <th> Due date</th>
+          <th> Invoice</th>
           <th> Notes</th>
         </tr>
         </thead>
@@ -40,13 +43,17 @@ export default function Orders() {
               <tr key={order.orderNumber} >
                 <td>{order.clientID}</td>
                 <td>{order.orderNumber}</td>
+                <td>{order.productNames}</td>
                 <td>{order.dueDate}</td>
+                <td>
+                  <Link to={`/invoices/${order.orderNumber}`}>{"View" + order.orderNumber}</Link>
+                </td>                
                 <td>{order.orderNotes}</td>
               </tr>
             );
           })
         }</tbody>
-      </table>
+      </Table>
       }
     </div>
   )

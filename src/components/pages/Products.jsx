@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { fetchData } from '../../service/api';
 import CreateProduct from '../CreateProduct.jsx';
+import {Table} from "react-bootstrap"
 
 export default function Products() {
   const [products, setProducts] = useState(undefined)
@@ -20,11 +21,11 @@ export default function Products() {
       <p>Products list</p>
       {products == undefined ?
       "Loading products":
-      <table>
+      <Table>
         <thead>
         <tr>
-          <th>Name | </th>
-          <th> Price | </th>
+          <th>Name</th>
+          <th> Price</th>
           <th> Description</th>
         </tr>
         </thead>
@@ -39,7 +40,7 @@ export default function Products() {
             );
           })
         }</tbody>
-      </table>
+      </Table>
       }
     </div>
   )
