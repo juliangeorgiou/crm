@@ -1,6 +1,29 @@
 import React, {useState, useEffect} from "react";
 import { postData, fetchData } from "../service/api";
 
+import styled from "styled-components";
+
+const InputForm = styled.div`
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 2em
+`
+
+const InputBox = styled.div`
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  padding-bottom: 2em
+  `
+
+  const NotesStyle = styled.div`
+  flex-direction: column;
+  display: flex;
+  align-items: stretch;
+`
+
 //{props} are for modifying how the component behaves; props is like a button that can make magic changes
 export default function CreateOrder({onCreate, clientID: providedClientID}){
     const [clientID, setClientID] = useState(providedClientID)
@@ -69,41 +92,58 @@ export default function CreateOrder({onCreate, clientID: providedClientID}){
     }
 
     return (
-        <div>
-            { providedClientID === undefined 
-                ? <select disabled={clients === undefined} onChange={handleClientIdChange}>
-                    <option>Choose client</option>
-                    { (clients !== undefined) 
-                        ? clients.map(client => (
-                            <option key={client.clientID} value={client.clientID}>
-                                {client.clientID} {client.name}
+        <InputBox>
+            <h2>Create order</h2>
+            <InputForm>
+                <div>
+                <h4>Client</h4>
+                    { providedClientID === undefined 
+                    ? <select disabled={clients === undefined} onChange={handleClientIdChange}>
+                        
+                        <option>Choose client</option>
+                        { (clients !== undefined) 
+                            ? clients.map(client => (
+                                <option key={client.clientID} value={client.clientID}>
+                                    {client.clientID} {client.name}
+                                </option>
+                            )) 
+                            : <option value={undefined}>
+                                    Fetching clients...
                             </option>
-                        )) 
-                        : <option value={undefined}>
-                                Fetching clients...
-                        </option>
+                        }
+                    </select> 
+                    : <></>
                     }
-                </select> 
-                : <></>
-            }
-            {/*TODO: when no product is selected, no error is thrown*/}
-            <select disabled={products === undefined} onChange={handleProductsChange}>
-                <option>Choose product</option>
-                { (products !== undefined) 
-                    ? products.map(product => (
-                        <option key={product.productName} value={product.productName}>
-                            {product.productName} {product.productPrice}
-                        </option>
-                    )) 
-                    : <option value={undefined}>
-                            Fetching products...
-                    </option>
-                }
-            </select>
-            {/* date dropdown */}<input placeholder="1 December 2022" type="date" value={dueDate} onChange={handleDueDateChange}/>
-            <input placeholder="Some notes here" value={orderNotes} onChange={handleOrderNotesChange}/>
-            <button onClick={handleSave}>Save</button>
-            <p style={{color: "green", display:"inline"}}>{savedNotification}</p>
-        </div>
+                <h4>Product</h4>
+                    {/*TODO: when no product is selected, no error is thrown*/}
+                    <select disabled={products === undefined} onChange={handleProductsChange}>
+                        
+                        <option>Choose product</option>
+                        { (products !== undefined) 
+                            ? products.map(product => (
+                                <option key={product.productName} value={product.productName}>
+                                    {product.productName} {product.productPrice}
+                                </option>
+                            )) 
+                            : <option value={undefined}>
+                                    Fetching products...
+                            </option>
+                        }
+                    </select>
+                <h4>Due date</h4>
+                    {/* date dropdown */}<input placeholder="1 December 2022" type="date" value={dueDate} onChange={handleDueDateChange}/>
+                </div>
+                <div>
+                    <h4>Notes</h4>
+                    <NotesStyle>
+                        <input style={{height: "11em"}} placeholder="Some notes here" value={orderNotes} onChange={handleOrderNotesChange}/>
+                    </NotesStyle>
+                    <div style={{gap: "20px"}}>
+                        <button onClick={handleSave}>Save</button>
+                        <p style={{color: "green", display:"inline"}}>{savedNotification}</p>
+                    </div>
+                </div>
+            </InputForm>
+        </InputBox>
     )
 }

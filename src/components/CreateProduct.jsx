@@ -1,5 +1,22 @@
 import React, {useState} from "react";
 import { postData } from "../service/api";
+import styled from "styled-components";
+
+
+const InputForm = styled.div`
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 2em
+`
+
+const InputBox = styled.div`
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  padding-bottom: 2em
+  `
 
 //the first param of CreateProduct is an object e.g: named "props"
 //below key-value pair is "onCreate"
@@ -51,12 +68,22 @@ export default function CreateProduct(props){
     }
 
     return (
-        <div>
-            <input placeholder="Taxes 2022" value={productName} onChange={handleProductNameChange}/>
-            <input placeholder="Filing taxes for 2022" value={productDescription} onChange={handleProductDescriptionChange}/>
-            {/* LOCALIZATION FOR STEP AND PLACEHOLDER */} <input placeholder="200" type="number" min="0" step="0.01" value={productPrice} onChange={handleProductPriceChange}/>
-            <button onClick={handleSave}>Save</button>
-            <p style={{color: "green", display:"inline"}}>{savedNotification}</p>
-        </div>
+        <InputBox>
+            <h2>Create product</h2>
+            <InputForm>
+                <div>
+                    <h4>Name</h4>
+                    <input placeholder="Taxes 2022" value={productName} onChange={handleProductNameChange}/>
+                    <h4>Description</h4>
+                    <input placeholder="Filing taxes for 2022" value={productDescription} onChange={handleProductDescriptionChange}/>
+                    {/* LOCALIZATION FOR STEP AND PLACEHOLDER */} 
+                    <h4>Price</h4>
+                    <input placeholder="200" type="number" min="0" step="0.01" value={productPrice} onChange={handleProductPriceChange}/>
+                    <button onClick={handleSave}>Save</button>
+                    <p style={{color: "green", display:"inline"}}>{savedNotification}</p>
+                </div>
+            </InputForm>
+        </InputBox>
+        
     )
 }

@@ -4,6 +4,19 @@ import { fetchData } from '../../service/api';
 import CreateOrder from '../CreateOrder.jsx';
 import {Link} from 'react-router-dom'
 import {Table} from "react-bootstrap"
+import styled from "styled-components";
+
+const OrdersListStyle = styled.div`
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+`
+
+const TableControls = styled.div`
+  flex-direction: row;
+  display: flex;
+
+` 
 
 export default function Orders() {
   const [orders, setOrders] = useState(undefined)
@@ -22,39 +35,43 @@ export default function Orders() {
   //pass the dummy data to this component ()
   return (
     <div>
-      <CreateOrder onCreate={refreshTable}/>
-      <p>Orders list</p>
-      {orders == undefined ?
-      "Loading orders":
-      <Table>
-        <thead>
-        <tr>
-          <th>User ID</th>
-          <th> Order number</th>
-          <th> Product name</th>
-          <th> Due date</th>
-          <th> Invoice</th>
-          <th> Notes</th>
-        </tr>
-        </thead>
-        <tbody>{
-          orders.map(order => {
-            return (
-              <tr key={order.orderNumber} >
-                <td>{order.clientID}</td>
-                <td>{order.orderNumber}</td>
-                <td>{order.productNames}</td>
-                <td>{order.dueDate}</td>
-                <td>
-                  <Link to={`/invoices/${order.orderNumber}`}>{"View" + order.orderNumber}</Link>
-                </td>                
-                <td>{order.orderNotes}</td>
-              </tr>
-            );
-          })
-        }</tbody>
-      </Table>
-      }
+      <OrdersListStyle>
+        <CreateOrder onCreate={refreshTable}/>
+        <h2>Orders list</h2>
+        {orders == undefined ?
+        "Loading orders":
+        <TableControls>
+          <Table>
+            <thead>
+            <tr>
+              <th>User ID</th>
+              <th> Order number</th>
+              <th> Product name</th>
+              <th> Due date</th>
+              <th> Invoice</th>
+              <th> Notes</th>
+            </tr>
+            </thead>
+            <tbody>{
+              orders.map(order => {
+                return (
+                  <tr key={order.orderNumber} >
+                    <td>{order.clientID}</td>
+                    <td>{order.orderNumber}</td>
+                    <td>{order.productNames}</td>
+                    <td>{order.dueDate}</td>
+                    <td>
+                      <Link to={`/invoices/${order.orderNumber}`}>{"View" + order.orderNumber}</Link>
+                    </td>                
+                    <td>{order.orderNotes}</td>
+                  </tr>
+                );
+              })
+            }</tbody>
+          </Table>
+        </TableControls>
+        }
+      </OrdersListStyle>
     </div>
   )
 }

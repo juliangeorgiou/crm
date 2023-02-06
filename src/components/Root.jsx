@@ -22,8 +22,8 @@ const NavBar = styled.div`
 
 export default function Root() {
   return (
-    <AppWindow>
-      <NavBar>
+    <AppWindow style={{"background-color": "#222", "color": "#e6e6e6"}}>
+      <NavBar >
         <div>
           <Link to="/clients"><img width="50" height="50" src="../static/client.png"></img><font size="+1">Clients</font></Link>
         </div>
