@@ -1,7 +1,7 @@
 {
+  "homepage": "http://juliangeorgiou.github.io/crm",
   "name": "crm-v0.1",
   "version": "1.0.0",
-  "homepage": "https://juliangeorgiou.github.io/crm",
   "main": "index.js",
   "dummy-key": "this page can be edited when you need to create new scripts, like below, packages are managed with the npm commands",
   "scripts": {
