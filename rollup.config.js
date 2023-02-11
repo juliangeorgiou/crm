@@ -7,7 +7,36 @@ import replace from '@rollup/plugin-replace';
 import css from "rollup-plugin-import-css";
 import scss from 'rollup-plugin-scss'
 
-export default {
+export default commandLineArgs => {
+  const plugins = [
+    scss(),
+    nodeResolve({
+      extensions: [".js"],
+    }),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(commandLineArgs.configDebug ? 'production' : 'development')
+    }),
+    babel({
+      presets: ["@babel/preset-react"],
+    }),
+    commonjs(),
+    copy({
+      targets: [
+        { src: 'ui/index.html', dest: 'dist/' },
+        { src: 'ui/style.css', dest: 'dist/' },
+        { src: 'static/**/*', dest: 'dist/static/' }
+      ]
+    })
+  ]
+  if (commandLineArgs.configDebug) {
+    plugins.push(serve({ 
+      historyApiFallback: true,
+      contentBase:'dist',
+      //80 is for http and 8080 is for development
+      port:8080
+    }))
+  }
+  return {
     input: 'src/main.js',
     //specify where to export the resulting bundle.js file and which directory
     output: {
@@ -16,33 +45,9 @@ export default {
       format: 'es',
       sourcemap: 'inline'
     },
-    plugins: [
-      scss(),
-      nodeResolve({
-        extensions: [".js"],
-      }),
-      replace({
-        'process.env.NODE_ENV': JSON.stringify( 'development' )
-      }),
-      serve({ 
-        historyApiFallback: true,
-        contentBase:'dist',
-        //80 is for http and 8080 is for development
-        port:8080
-      }),
-      babel({
-        presets: ["@babel/preset-react"],
-      }),
-      commonjs(),
-      copy({
-        targets: [
-          { src: 'ui/index.html', dest: 'dist/' },
-          { src: 'ui/style.css', dest: 'dist/' },
-          { src: 'static/**/*', dest: 'dist/static/' }
-        ]
-      })
-    ],
+    plugins,
     watch: {
       //include: ["ui"]
     }
-  };
+  }
+};

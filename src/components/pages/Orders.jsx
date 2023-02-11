@@ -41,7 +41,7 @@ export default function Orders() {
         {orders == undefined ?
         "Loading orders":
         <TableControls>
-          <Table>
+          <table>
             <thead>
             <tr>
               <th>User ID</th>
@@ -68,7 +68,7 @@ export default function Orders() {
                 );
               })
             }</tbody>
-          </Table>
+          </table>
         </TableControls>
         }
       </OrdersListStyle>

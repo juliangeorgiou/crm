@@ -1,16 +1,29 @@
-import {registerClientCreateListener} from "./clients"
 import { Repository } from "./model"
 //below refers to a module inside folder node_modules (where npm install, installs stuff)
 //to make importing work from both custom imports form our own code and from node_modules 3rd party installs, we need a plugin for rollup called plugin -node-resolve
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {createRoot} from 'react-dom/client'
 import Routes from './components/Routes.jsx'
+import { ThemeProvider } from "styled-components"
+import { ThemeContext, lightTheme, darkTheme } from "./theme"
+
 
 //declare repository var
 const repository = Repository.loadFromLocalStorage()
 //# refers to an id in html
 const root = createRoot(document.querySelector('#app'));
-root.render(<Routes />);
+
+function ThemeWrapper(){
+    //provide context, source of data
+    const [theme, setTheme] = useState(lightTheme)
+    return <ThemeContext.Provider value={[theme, setTheme]}>
+        <ThemeProvider theme={theme}><Routes /></ThemeProvider>
+    </ThemeContext.Provider>
+}
+
+root.render(
+    <ThemeWrapper />
+);
 
 //call imported function
 //registerClientCreateListener(repository)

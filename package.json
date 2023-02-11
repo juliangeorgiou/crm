@@ -5,7 +5,8 @@
   "dummy-key": "this page can be edited when you need to create new scripts, like below, packages are managed with the npm commands",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup --config rollup.config.js -w"
+    "dev": "rollup --config rollup.config.js -w --configDebug",
+    "build": "rollup --config rollup.config.js"
   },
   "keywords": [],
   "author": "",

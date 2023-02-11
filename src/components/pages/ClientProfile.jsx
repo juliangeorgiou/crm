@@ -21,9 +21,10 @@
 //BALANCE 0: PAID INVOICES - BALANCE NEGATIVE: OPEN INVOICES - BALANCE POSITIVE: CREDIT ON ACCOUNT
 //PAYMENT METHODS: INVOICE BILLING, CREDIT CARD (stripe.com)
 
-import React from 'react';
+import {React, useContext} from 'react';
 import { Outlet, Link, useRouteLoaderData } from "react-router-dom";
 import styled from "styled-components";
+import { ThemeContext } from '../../theme';
 
 const Nav = styled.nav`
   display: flex;
@@ -48,14 +49,15 @@ const Button = styled.button`
     visibility: visible;
   }
 `
-
+//TODO: something broke here
 export default function ClientProfile() {
   const client = useRouteLoaderData("clientProfile");
+  const [theme, setTheme] = useContext(ThemeContext)
   return (
     <Container>
       <div>
         <ProficonContainer>
-          <Proficon src="/static/proficon.svg" />
+          <Proficon src={`/static/proficon${theme.picIdentifier}.png`} />
           <Button>Edit</Button>
         </ProficonContainer>
         <Nav>

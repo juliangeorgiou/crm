@@ -209,7 +209,7 @@ export default function Clients() {
             }
           </div>
         </TableControls>
-          <Table striped bordered hover>
+          <table>
             <thead>
               <tr style={isEditingTable 
                 ? {
@@ -229,7 +229,7 @@ export default function Clients() {
             </thead>
             {/* when passing props to a component,  use the HTML attribute method*/}
             <ClientsTableBody clients = {clients}  phonesShown = {phonesShown} ascending = {ascending} columnSort = {columnSort} columnIsShown = {columnIsShown} isEditingTable = {isEditingTable}/>
-          </Table>
+          </table>
       </div>
       }
     </ClientsListStyle>

@@ -35,7 +35,7 @@ export default function Products() {
       {products == undefined ?
       "Loading products":
       <TableControls>
-        <Table>
+        <table>
           <thead>
           <tr>
             <th>Name</th>
@@ -54,7 +54,7 @@ export default function Products() {
               );
             })
           }</tbody>
-        </Table>
+        </table>
       </TableControls>
       }
     </ProductsListStyle>

@@ -10,7 +10,6 @@ import React from 'react'
 import Clients from './pages/Clients.jsx'
 import Orders from './pages/Orders.jsx'
 import Products from './pages/Products.jsx'
-//TODO: IMPORT PROFILE, SECURITY, LOGOUT
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,7 +21,8 @@ import ClientFeed from './ClientFeed.jsx'
 import Invoice from './Invoice.jsx'
 import ClientInfo from './ClientInfo.jsx'
 import ClientOrders from './ClientOrders.jsx'
-
+import Settings from './pages/Settings.jsx';
+import Leads from './pages/Leads.jsx';
 
 /*THIS IS A NAV PANE EMPLOYING USESTATE FOR NAVIGATION
 
@@ -84,6 +84,10 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: "leads",
+        element: <Leads />,
+      },
+      {
         path: "clients",
         element: <Clients />,
       },
@@ -96,6 +100,10 @@ const router = createBrowserRouter([
         element: <Orders />,
       },
       {
+        path: "settings",
+        element: <Settings />,
+      },
+      {
         path: "invoices/:orderNumber",
         element: <Invoice />,
         loader: invoiceLoader,
@@ -106,9 +114,5 @@ const router = createBrowserRouter([
 ]);
 
 export default function Routes(){  
-  return (
-      <div>
-        <RouterProvider router={router} />
-      </div>
-  )
+  return <RouterProvider router={router} />
 }

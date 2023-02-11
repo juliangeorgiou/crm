@@ -6,8 +6,6 @@ import {Table} from "react-bootstrap"
 const InvoicePage = styled.div`
   display: flex;
   justify-content: center;
-  background-color: #222;
-  color: #e6e6e6;
 `
 
 const InvoiceArea = styled.div`
@@ -16,14 +14,16 @@ const InvoiceArea = styled.div`
   justify-content: space-around;
   width: 210mm;
   height: 297mm;
-  background-color: black; 
+  border: 1px solid black;
+  padding-top : 15mm;
+  padding-bottom : 15mm;
 `
 
 const LogoRow = styled.div`
   flex-direction: row;
   display: flex;
-  margin-left: 20mm;
-  margin-right: 20mm;
+  margin-left: 31.7mm;
+  margin-right: 31.7mm;
   justify-content: space-between;
 `
 
@@ -31,32 +31,32 @@ const AddressRow = styled.div`
   flex-direction: row;
   display: flex;
   justify-content: space-between;
-  margin-left: 20mm;
-  margin-right: 20mm;
+  margin-left: 31.7mm;
+  margin-right: 31.7mm;
 `
 
 const BillTo = styled.div`
   flex-direction: row;
   display: flex; 
   justify-content: space-between;
-  margin-left: 20mm;
-  margin-right: 20mm;
+  margin-left: 31.7mm;
+  margin-right: 31.7mm;
 `
 
 const ProductsSold = styled.div`
   flex-direction: column;
   display: flex; 
   justify-content: space-between;
-  margin-left: 20mm;
-  margin-right: 20mm;
+  margin-left: 31.7mm;
+  margin-right: 31.7mm;
 `
 
 const TotalsBox = styled.div`
   flex-direction: row;
   display: flex; 
   justify-content: flex-end;
-  margin-left: 20mm;
-  margin-right: 20mm;
+  margin-left: 31.7mm;
+  margin-right: 31.7mm;
 `
 
 
@@ -64,8 +64,21 @@ const TransferInstructions = styled.div`
   flex-direction: row;
   display: flex; 
   justify-content: center;
-  margin-left: 20mm;
-  margin-right: 20mm;
+  margin-left: 31.7mm;
+  margin-right: 31.7mm;
+`
+
+const Tr = styled.div`
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  font-weight: bold;
+`
+
+const Th = styled.div`
+  border-bottom: 1px solid black;
+  font-weight: bold;
 `
 
 export default function Invoice(){
@@ -75,7 +88,7 @@ export default function Invoice(){
   return <InvoicePage>
     <InvoiceArea>
       <LogoRow>
-        <span>Logo</span><span>Invoice</span>
+        <span>Logo</span><h1>Invoice</h1>
       </LogoRow> 
       <AddressRow><address>
           <p>CYCRM LTD</p>
@@ -84,7 +97,7 @@ export default function Invoice(){
           <p>Switzerland</p>
           <p>www.cycrm.cy</p>  
         </address>
-        <div>
+        <div style={{"text-align":"right"}}>
           <p>Invoice number: {order.orderNumber}</p>
           <p>Date: 1/1/2023</p>
           <p>Due: 1/2/2023</p>  
@@ -92,32 +105,32 @@ export default function Invoice(){
       </AddressRow>
       <BillTo>
         <div>
-          <Table>
+          <table style={{border: "1px solid"}}>
             <thead>
               <tr>
-                <th>Bill to:</th>
+                <th style={{border: "1px solid", padding: "5px"}}>Bill to:</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{client.name}</td>
+                <td style={{border: "1px solid", padding: "5px"}}>{client.name}</td>
               </tr>
               <tr>
-                <td style={{"word-wrap": "break-all"}}>
+                <td style={{"word-wrap": "break-all", border: "1px solid", padding: "5px"}}>
                   {client.address}
                 </td>
               </tr>
               <tr>
-                <td>VAT Number: Number</td>
+                <td style={{border: "1px solid", padding: "5px"}}>VAT Number: Number</td>
               </tr>
             </tbody>
-          </Table>
+          </table>
         </div>
       </BillTo>
       <ProductsSold>
-        <Table>
+        <table>
             <thead>
-              <tr>
+              <tr style={{border: "1px solid", padding: "5px"}}>
                 <th>Product sold</th>
                 <th>Quantity</th>
                 <th>Price per item</th>
@@ -125,20 +138,20 @@ export default function Invoice(){
                 <th>Amount</th>
               </tr>
             </thead>
-          <tbody>
+          <tbody style={{"text-align":"center", border: "1px solid", padding: "5px"}}>
             <tr>
               <td>Taxes 2022</td>
               <td>2</td>
               <td>€120</td>
-              <td style={{"word-wrap": "break-all"}}>Product desc very long text here for tesitng to see if it works properly</td>
+              <td style={{"word-wrap": "break-all"}}>Product desc very long text here for testing to see if it works properly</td>
               <td>€240</td>
             </tr>
           </tbody>
-        </Table>
+        </table>
       </ProductsSold>
       <TotalsBox>
-        <div>
-          <Table>
+        <div style={{"text-align":"right", border: "1px solid"}}>
+          <table>
             <tr>
               <th>Subtotal</th>
               <td>€240</td>
@@ -163,7 +176,7 @@ export default function Invoice(){
               <th>Currency</th>
               <td>Euro</td>
             </tr>
-          </Table>
+          </table>
         </div>
       </TotalsBox>
       <TransferInstructions>

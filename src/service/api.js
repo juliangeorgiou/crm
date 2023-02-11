@@ -1,9 +1,11 @@
+const baseURL = process.env.NODE_ENV ? "http://localhost:8000/api/" : "http://116.203.145.133:8000/api/"
+
 export async function fetchData(dataSetName){
     const timeOut = new Promise((_resolve, reject) => {
         setTimeout(reject, 10000, 'Fetching data timed out. Please contact support.');
       });
     const fetchPromise = (async () => {
-        const res = await fetch(`http://localhost:8000/api/${dataSetName}`)
+        const res = await fetch(`${baseURL}${dataSetName}`)
         const dataSet = await res.json()
         return dataSet
     })()
@@ -31,7 +33,7 @@ export async function postData(dataSetName, dataForPosting){
         setTimeout(reject, 10000, 'Posting data timed out. Please contact support.');
       });
     const postPromise = (async () => {
-        const res = await fetch(`http://localhost:8000/api/${dataSetName}`, {
+        const res = await fetch(`${baseURL}${dataSetName}`, {
             method: "POST",
             body: JSON.stringify(dataForPosting),
             headers: {
