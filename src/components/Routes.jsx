@@ -117,7 +117,7 @@ const router = createBrowserRouter([
     ],
   },
 ], {
-  basename: "crm"
+  basename: "/crm"
 });
 
 export default function Routes(){  
