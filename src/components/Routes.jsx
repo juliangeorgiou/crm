@@ -116,7 +116,9 @@ const router = createBrowserRouter([
       }
     ],
   },
-]);
+], {
+  basename: "crm"
+});
 
 export default function Routes(){  
   return <RouterProvider router={router} />
