@@ -1,12 +1,10 @@
 {
-  "homepage": "http://juliangeorgiou.github.io/crm",
+  "homepage": "https://juliangeorgiou.github.io/crm",
   "name": "crm-v0.1",
   "version": "1.0.0",
   "main": "index.js",
   "dummy-key": "this page can be edited when you need to create new scripts, like below, packages are managed with the npm commands",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "rollup --config rollup.config.js -w --configDebug",
     "build": "rollup --config rollup.config.js"
