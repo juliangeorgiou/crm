@@ -8,13 +8,14 @@ import css from "rollup-plugin-import-css";
 import scss from 'rollup-plugin-scss'
 
 export default commandLineArgs => {
+  console.log(commandLineArgs)
   const plugins = [
     scss(),
     nodeResolve({
       extensions: [".js"],
     }),
     replace({
-      'process.env.NODE_ENV': JSON.stringify(commandLineArgs.configDebug ? 'production' : 'development')
+      'process.env.NODE_ENV': JSON.stringify(commandLineArgs.configDebug ? 'development' : 'production')
     }),
     babel({
       presets: ["@babel/preset-react"],

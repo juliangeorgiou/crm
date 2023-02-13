@@ -1,6 +1,8 @@
 const baseURL = process.env.NODE_ENV === "production" ? "http://116.203.145.133:8000/api/" : "http://localhost:8000/api/"
+const abc = process.env.NODE_ENV
 
 export async function fetchData(dataSetName){
+    console.log(abc)
     const timeOut = new Promise((_resolve, reject) => {
         setTimeout(reject, 10000, 'Fetching data timed out. Please contact support.');
       });
