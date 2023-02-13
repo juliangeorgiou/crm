@@ -23,6 +23,7 @@ import ClientInfo from './ClientInfo.jsx'
 import ClientOrders from './ClientOrders.jsx'
 import Settings from './pages/Settings.jsx';
 import Leads from './pages/Leads.jsx';
+import ClientsCards from './pages/ClientsCards.jsx';
 
 /*THIS IS A NAV PANE EMPLOYING USESTATE FOR NAVIGATION
 
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
       {
         path: "clients",
         element: <Clients />,
+      },
+      {
+        path: "cards",
+        element: <ClientsCards />,
       },
       {
         path: "products",
