@@ -1,4 +1,4 @@
-const baseURL = process.env.NODE_ENV === "production" ? "http://116.203.145.133:8000/api/" : "http://localhost:8000/api/"
+const baseURL = process.env.NODE_ENV === "production" ? "https://julian-crm.pfiers.net/api/" : "http://localhost:8000/api/"
 const abc = process.env.NODE_ENV
 
 export async function fetchData(dataSetName){
