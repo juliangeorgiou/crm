@@ -1,3 +1,4 @@
+//baseURl points to the backend - in production it's the hetzner server and in development it's the backend in the other vscode window
 const baseURL = process.env.NODE_ENV === "production" ? "https://julian-crm.pfiers.net/api/" : "http://localhost:8000/api/"
 const abc = process.env.NODE_ENV
 

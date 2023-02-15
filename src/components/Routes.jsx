@@ -14,7 +14,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import ClientProfile from './pages/ClientProfile.jsx'
+import ClientProfile from './pages/ClientProfile2.jsx'
 import Root from './Root.jsx';
 import {fetchData} from '../service/api.js'
 import ClientFeed from './ClientFeed.jsx'
@@ -59,6 +59,7 @@ async function clientLoader({params}){
   const clientLoaded = await fetchData("client/" + params.clientID)
   return clientLoaded
 }
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -117,7 +118,7 @@ const router = createBrowserRouter([
     ],
   },
 ], {
-  basename: "/crm"
+  basename: process.env.NODE_ENV === "production" ? "/crm" : "/" 
 });
 
 export default function Routes(){  
