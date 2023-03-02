@@ -1,42 +1,52 @@
 {
-  "homepage": "https://juliangeorgiou.github.io/crm",
-  "name": "crm-v0.1",
-  "version": "1.0.0",
-  "main": "index.js",
-  "dummy-key": "this page can be edited when you need to create new scripts, like below, packages are managed with the npm commands",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "rollup --config rollup.config.js -w --configDebug",
-    "build": "rollup --config rollup.config.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "name": "untitled-folder",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@babel/preset-react": "^7.18.6",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^14.0.1",
-    "@rollup/plugin-replace": "^4.0.0",
-    "bootstrap": "^5.2.1",
-    "jquery": "^3.6.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.13",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "multi-range-slider-react": "^2.0.2",
-    "popper.js": "^1.16.1",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.5.0",
+    "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.3",
+    "react-router-dom": "^6.8.2",
+    "react-scripts": "5.0.1",
     "react-select": "^5.7.0",
-    "rollup-plugin-import-css": "^3.1.0",
-    "rollup-plugin-scss": "^4.0.0",
-    "rollup-plugin-serve": "^2.0.1",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "ts-event-bus": "^4.1.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
   },
-  "description": "",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26",
-    "gh-pages": "^5.0.0",
-    "rollup-plugin-copy": "^3.4.0",
-    "sass": "^1.56.2"
+    "@types/styled-components": "^5.1.26"
   }
 }

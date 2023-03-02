@@ -16,6 +16,15 @@ const TableStyle = styled.div`
   max-width: 35cm
 `
 
+const PopupMenu = styled.div`
+  position: absolute;
+  background: white;
+  padding: 1em;
+  box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+  border: 2px solid white;
+  border-radius: 2px;
+`
+
 const ClientsPageStyle = styled.div`
   flex-direction: column;
   display: flex;
@@ -81,7 +90,7 @@ function ClientsTableBody({clients, phonesShown, ascending, columnSort, columnIs
     }
   })
   
-  return <div>
+  return <>
     {filteredClients.map((client) => (
       <ClientCard key={client.clientID}>
         {columnIsShown.clientID || isEditingTable
@@ -111,7 +120,7 @@ function ClientsTableBody({clients, phonesShown, ascending, columnSort, columnIs
         return sum + client.orderValue
       }, 0)}</td>
     </tr> */}
-  </div>
+  </>
 }
 
 export default function ClientsCards() {
@@ -128,6 +137,7 @@ export default function ClientsCards() {
   }, [])
 
   const [columnSort, setColumnSort] = useState("name")
+  const [sortMenuShown, setSortMenuShown] = useState(false)
   const [isEditingTable, setIsEditingTable] = useState(false)
   const [ascending, setAscending] = useState(true)
   const [filterMenuShown, setFilterMenuShown] = useState(false)
@@ -195,22 +205,38 @@ export default function ClientsCards() {
       "Loading clients":
       <div>
         <TableControls>
-          <a onClick={() => setIsEditingTable(!isEditingTable)}
-            href="#"> &#9998; {isEditingTable ? "Sort by" : "Sort by"}
-          </a>&nbsp;
           <div style={{display: "inline-block"}}>
-            <a onClick={() => {setFilterMenuShown(!filterMenuShown); setIsEditingTable(!isEditingTable)}} href="#" style={{display: "flex"}}>
+            <a onClick={() => {setSortMenuShown(!sortMenuShown)}} style={{display: "flex"}}>
+              <span className="material-symbols-outlined">sort</span> Sort
+            </a>
+            {sortMenuShown
+              ? <PopupMenu>
+                  <Select
+                      options={[
+                        { value: "clientID", label: "ID" },
+                        { value: "name", label: "Name" },
+                        { value: "lastContact", label: "Last contact" },
+                        { value: "email", label: "Email" },
+                        { value: "address", label: "Address" },
+                        { value: "phone", label: "Phone" },
+                      ].map((option) => {
+                        return { value: option.value, label: option.label + (ascending ? " ⏶" : " ⏷") }
+                      })}
+                      onChange={(selectedOption) => {
+                        setAscending(!ascending)
+                        setColumnSort(selectedOption.value)
+                      }}
+                    />
+                </PopupMenu>
+              : ""
+            }
+          </div>
+          <div style={{display: "inline-block"}}>
+            <a onClick={() => {setFilterMenuShown(!filterMenuShown); setIsEditingTable(!isEditingTable)}} style={{display: "flex"}}>
               <span className="material-symbols-outlined">filter_alt</span> Filter
             </a>
             {filterMenuShown
-              ? <div style={{
-                  position: "absolute",
-                  background: "white",
-                  padding: "1em",
-                  boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.75)",
-                  border: "2px solid white",
-                  borderRadius: "2px"
-                }}>
+              ? <PopupMenu>
                   <MultiRangeSlider />
                   {clients == undefined
                   ? "Loading clients"
@@ -231,7 +257,7 @@ export default function ClientsCards() {
                     </ClientsCardStyle>
                     </div>
                   }
-                </div>
+                </PopupMenu>
               : ""
             }
           </div>

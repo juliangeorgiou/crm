@@ -1,8 +1,0 @@
-* {box-sizing: border-box}
-
-/* Make the page and everything contained to fill the entire sceeen */
-html, body, #app {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
